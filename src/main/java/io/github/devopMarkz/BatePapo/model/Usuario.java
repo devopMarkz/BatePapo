@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +31,9 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "perfil")
     private Perfil perfil;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usuarios")
+    private List<Grupo> grupos = new ArrayList<>();
 
     public Usuario() {
     }
@@ -93,6 +97,10 @@ public class Usuario implements UserDetails {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public List<Grupo> getGrupos() {
+        return grupos;
     }
 
     @Override
