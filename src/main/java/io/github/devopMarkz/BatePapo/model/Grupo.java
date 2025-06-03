@@ -36,6 +36,9 @@ public class Grupo {
     )
     private List<Usuario> administradors = new ArrayList<>();
 
+    @OneToMany(mappedBy = "grupo")
+    private List<Mensagem> mensagens = new ArrayList<>();
+
     public Grupo() {
     }
 
