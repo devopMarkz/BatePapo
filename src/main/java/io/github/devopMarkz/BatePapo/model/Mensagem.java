@@ -29,6 +29,10 @@ public class Mensagem {
     @JoinColumn(name = "grupo_id", nullable = true)
     private Grupo grupo;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "conversa_privada_id", nullable = true)
+    private ConversaPrivada conversaPrivada;
+
     public Mensagem() {
     }
 
@@ -52,6 +56,15 @@ public class Mensagem {
         this.dataCriacao = dataCriacao;
         this.usuario = usuario;
         this.grupo = grupo;
+    }
+
+    public Mensagem(Long id, String texto, LocalDateTime dataCriacao, Usuario usuario, Grupo grupo, ConversaPrivada conversaPrivada) {
+        this.id = id;
+        this.texto = texto;
+        this.dataCriacao = dataCriacao;
+        this.usuario = usuario;
+        this.grupo = grupo;
+        this.conversaPrivada = conversaPrivada;
     }
 
     public Long getId() {
@@ -92,6 +105,14 @@ public class Mensagem {
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
+    }
+
+    public ConversaPrivada getConversaPrivada() {
+        return conversaPrivada;
+    }
+
+    public void setConversaPrivada(ConversaPrivada conversaPrivada) {
+        this.conversaPrivada = conversaPrivada;
     }
 
     @Override
